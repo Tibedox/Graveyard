@@ -1,5 +1,6 @@
 package com.example.graveyard;
 
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -32,6 +33,15 @@ public class Ghost {
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(width, height);
         image.setLayoutParams(params);
         activity.backGround.addView(image);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                x = -activity.screenWidth;
+                vx = vy = 0;
+            }
+        };
+        image.setOnClickListener(listener);
     }
 
     public void move() {

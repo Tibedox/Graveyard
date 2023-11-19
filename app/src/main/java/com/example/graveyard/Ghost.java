@@ -4,24 +4,27 @@ import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.graveyard.MainActivity;
+import com.example.graveyard.R;
+
 import java.util.Random;
 
 public class Ghost {
-    MainActivity activity;
-    float x, y;
-    float vx, vy;
-    int width, height;
-    ImageView image;
+    protected MainActivity activity;
+    protected float x, y;
+    protected float vx, vy;
+    protected int width, height;
+    protected ImageView image;
 
-    Ghost(MainActivity activity) {
+    public Ghost(MainActivity activity) {
         this.activity = activity;
         Random rnd  = new Random();
         width = rnd.nextInt(100)+50;
         height = (int)(width*1.55);
-        x = activity.screenWidth/2 - width/2;
-        y = activity.screenHeight/2 - height/2;
-        vx = rnd.nextFloat()*11-5;
-        vy = rnd.nextFloat()*11-5;
+        x = activity.screenWidth/2f - width/2f;
+        y = activity.screenHeight/2f - height/2f;
+        vx = rnd.nextFloat()*6-3;
+        vy = rnd.nextFloat()*6-3;
         image = new ImageView(activity.getApplicationContext());
         image.setImageResource(R.drawable.ghost3);
         image.setX(x);
@@ -31,7 +34,7 @@ public class Ghost {
         activity.backGround.addView(image);
     }
 
-    void move() {
+    public void move() {
         x += vx;
         if(x > activity.screenWidth - width || x < 0) vx = -vx;
         image.setX(x);

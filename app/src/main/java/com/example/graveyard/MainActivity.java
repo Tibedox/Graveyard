@@ -5,16 +5,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.widget.ImageView;
 
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-    int screenWidth, screenHeight;
-    ConstraintLayout backGround;
+    public int screenWidth, screenHeight;
+    public ConstraintLayout backGround;
     Ghost[] ghosts = new Ghost[10];
+    Dementor[] dementors = new Dementor[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < ghosts.length; i++) {
             ghosts[i] = new Ghost(this);
         }
+        for (int i = 0; i < dementors.length; i++) {
+            dementors[i] = new Dementor(this);
+        }
 
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 for (int i = 0; i < ghosts.length; i++) {
                     ghosts[i].move();
+                }
+                for (int i = 0; i < dementors.length; i++) {
+                    dementors[i].move();
                 }
             }
         };
